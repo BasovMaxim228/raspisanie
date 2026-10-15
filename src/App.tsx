@@ -1,5 +1,5 @@
 import "./App.css";
-import ScheduleScreen from "./screens/CheduleScreen";
+import ScheduleScreen from "./screens/SheduleScreen";
 
 function App() {
   return <ScheduleScreen />;

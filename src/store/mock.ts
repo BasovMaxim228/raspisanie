@@ -1,8 +1,10 @@
-import { DAYS } from "../types.js";
-import type { Lesson } from "../types.js";
-import DayGroup from "../components/DayGroup";
+import type { Lesson } from "../types";
 
-const mockLessons: Lesson[] = [
+interface LessonState {
+  items: Lesson[];
+}
+
+export const mockLessons: Lesson[] = [
   {
     id: "1",
     subject: "Управление проектами",
@@ -37,23 +39,3 @@ const mockLessons: Lesson[] = [
     taskDone: false,
   },
 ];
-
-export default function ScheduleScreen() {
-  return (
-    <div className="min-h-screen bg-gray-50 pb-24">
-      <header className="bg-white border-b border-gray-100 px-4 py-4 sticky top-0 z-10">
-        <h1 className="text-xl font-bold text-gray-900">MySchedule</h1>
-      </header>
-
-      <main className="p-4">
-        {DAYS.map((day) => (
-          <DayGroup
-            key={day.key}
-            day={day.key}
-            lessons={mockLessons.filter((l) => l.day === day.key)}
-          />
-        ))}
-      </main>
-    </div>
-  );
-}
