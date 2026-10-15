@@ -17,15 +17,24 @@ export default function DayGroup({ day, lessons, onEdit }: DayGroupProps) {
   return (
     <section className="mb-6">
       <h2
-        className={`text-sm font-semibold uppercase tracking-wide mb-3
-                ${isToday ? "text-blue-600" : "text-gray-400"}
-                `}
+        className={`text-sm font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${
+          isToday ? "text-amber-400" : "text-gray-500"
+        }`}
       >
+        {isToday && (
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+        )}
         {dayLabel}
-        {isToday && <span className="ml-2 text-xs">(сегодня)</span>}
+        {isToday && (
+          <span className="ml-1 text-xs font-medium text-amber-400/70 normal-case tracking-normal">
+            сегодня
+          </span>
+        )}
       </h2>
       {lessons.length === 0 ? (
-        <p className="text-sm text-gray-400 italic">Занятий нет</p>
+        <p className="text-sm text-gray-600 italic pl-3 border-l-2 border-[#2a2a32]">
+          Занятий нет
+        </p>
       ) : (
         lessons.map((lesson) => (
           <LessonCard key={lesson.id} lesson={lesson} onEdit={onEdit} />

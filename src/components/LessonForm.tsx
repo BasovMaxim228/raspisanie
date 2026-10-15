@@ -41,17 +41,24 @@ export default function LessonForm({
     onClose();
   }
 
+  const inputClass =
+    "w-full bg-[#232329] border border-[#2a2a32] text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 transition-all";
+
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-end sm:items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 animate-fade-in">
       <form
         onSubmit={handleSubmit}
-        className="bg-white w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl p-5 space-y-3"
+        className="bg-[#1a1a1f] w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl p-6 space-y-3 border border-[#2a2a32] shadow-2xl shadow-black/50"
       >
-        <h2 className="text-lg font-bold">
-          {editingLesson ? "Редактировать" : "Новое занятие"}
-        </h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-white">
+            {editingLesson ? "Редактировать" : "Новое занятие"}
+          </h2>
+          <div className="w-10 h-1 rounded-full bg-[#2a2a32] sm:hidden" />
+        </div>
+
         <input
-          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+          className={inputClass}
           placeholder="Предмет"
           value={lesson.subject}
           onChange={(event) =>
@@ -59,7 +66,7 @@ export default function LessonForm({
           }
         />
         <input
-          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+          className={inputClass}
           placeholder="Преподаватель"
           value={lesson.teacher}
           onChange={(event) =>
@@ -67,7 +74,7 @@ export default function LessonForm({
           }
         />
         <input
-          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+          className={inputClass}
           placeholder="Кабинет"
           value={lesson.room}
           onChange={(event) =>
@@ -76,7 +83,7 @@ export default function LessonForm({
         />
 
         <select
-          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+          className={inputClass}
           value={lesson.day}
           onChange={(event) =>
             setLesson({ ...lesson, day: event.target.value as DayOfWeek })
@@ -92,16 +99,15 @@ export default function LessonForm({
         <div className="flex gap-2">
           <input
             type="time"
-            className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
+            className={inputClass}
             value={lesson.startTime}
             onChange={(event) =>
               setLesson({ ...lesson, startTime: event.target.value })
             }
           />
-
           <input
             type="time"
-            className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
+            className={inputClass}
             value={lesson.endTime}
             onChange={(event) =>
               setLesson({ ...lesson, endTime: event.target.value })
@@ -110,26 +116,26 @@ export default function LessonForm({
         </div>
 
         <textarea
-          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+          className={inputClass}
           placeholder="Задание"
-          rows={2}
+          rows={3}
           value={lesson.task}
           onChange={(event) =>
             setLesson({ ...lesson, task: event.target.value })
           }
         />
 
-        <div className="flex gap-2 pt-2">
+        <div className="flex gap-3 pt-2">
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-2 rounded-lg bg-gray-100 font-medium"
+            className="flex-1 py-3 rounded-xl bg-[#232329] text-gray-300 font-medium border border-[#2a2a32] hover:bg-[#2a2a32] transition-colors"
           >
             Отмена
           </button>
           <button
             type="submit"
-            className="flex-1 py-2 rounded-lg bg-blue-500 text-white font-medium"
+            className="flex-1 py-3 rounded-xl bg-amber-400 text-black font-bold hover:bg-amber-300 transition-colors shadow-lg shadow-amber-400/20"
           >
             Сохранить
           </button>
